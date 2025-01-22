@@ -12,12 +12,13 @@ export const useUserStore = defineStore("counter", () => {
 
   function createUser(user: Record<string, any>) {
     if (user.name && user.email) {
-      counter.value = counter.value + 1;
+      counter.value = counter.value + 1; // ใช้สำหรับรันลำดับ id
       data.value.push({
         id: counter.value,
         name: user.name,
         email: user.email,
       });
+      // set cookies for store data
       CookieUtils.setCookie("data", JSON.stringify(data.value), 7);
       CookieUtils.setCookie("counter", JSON.stringify(counter.value), 7);
     }
@@ -26,7 +27,7 @@ export const useUserStore = defineStore("counter", () => {
   function updateUser(id: number, name: string, email: string) {
     data.value = data.value.map((item) =>
       item.id === id ? { ...item, name: name, email: email } : item
-    );
+    ); // หา object ที่มี id ตรงและอัพเดทค่า 
     CookieUtils.setCookie("data", JSON.stringify(data.value), 7);
     CookieUtils.setCookie("counter", JSON.stringify(counter.value), 7);
   }
@@ -49,7 +50,7 @@ export const useUserStore = defineStore("counter", () => {
   }
 
   function deleteUser(id:number) {
-    data.value = data.value.filter(item=>item.id!==id)
+    data.value = data.value.filter(item=>item.id!==id) // คืนค่าที่ไม่ใช่idตัวนั้นมาเป็น array
     CookieUtils.setCookie("data", JSON.stringify(data.value), 7);
     CookieUtils.setCookie("counter", JSON.stringify(counter.value), 7);
   }

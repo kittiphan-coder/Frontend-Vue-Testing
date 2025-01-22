@@ -13,6 +13,7 @@ const user = useUserStore();
 
 
 function deleteUser(id:number){
+  // ใช้ swal ในการ confirm delete
   Swal.fire({
     title: "Are you sure?",
     text: `Do you really want to delete ? This process cannot be undone.`,

@@ -51,9 +51,10 @@ const router = useRouter();
 let name = ref("");
 let email = ref("");
 
+
 function createUser() {
   if (name.value !== "" && email.value !== "") {
-    user.createUser({ name: name.value, email: email.value });
+    user.createUser({ name: name.value, email: email.value }); // ส่งobjectใหม่เพื่อเพิ่มข้อมูล
     router.push("/");
   }
 }

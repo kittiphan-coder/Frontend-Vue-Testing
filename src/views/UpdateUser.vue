@@ -61,16 +61,19 @@ let id = Number(route.params.id); // แปลง id เป็น number ก่�
 
 onMounted(() => {
   const [userData] = user.getUserById(id);
+  // นำข้อมูลจากการ filter มาใส่ตัวแปล
   if (userData) {
     name.value = userData.name;
     email.value = userData.email;
   }else{
+    // กันข้อมูลผิดหลาด
     router.push("/")
   }
 });
 
 function updateUser() {
   if (email.value !== "" && name.value !== "")
+    // ส่งข้อมูล name emailใหม่เพื่ออัพเดท
     user.updateUser(id, name.value, email.value);
     router.push("/")
 }
